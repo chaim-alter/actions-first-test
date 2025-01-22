@@ -17,7 +17,7 @@ jobs:
       c1: ${{ steps.c1.outputs.c1>0 || !inputs.aaa }}
     steps: 
       - name: check
-        if: inputs.aaa == 'true'
+        if: inputs.aaa
         id: c1
         run: |
           COUNT=10
