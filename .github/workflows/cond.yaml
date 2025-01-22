@@ -14,8 +14,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     outputs:
-      c1: ${{inputs.aaa}}
-      # c1: steps.c1.outputs.c1>0 || inputs.aaa=='false'
+      c1: steps.c1.outputs.c1>0 || inputs.aaa
     steps: 
       - name: check
         if: inputs.aaa == 'true'
@@ -27,7 +26,7 @@ jobs:
   a1:
     runs-on: ubuntu-latest
     needs: check
-    # if: needs.check.outputs.c1=='true' || inputs.aaa=='false'
+    # if: needs.check.outputs.c1 || !inputs.aaa
     steps:
       - name: to be
         run: |
