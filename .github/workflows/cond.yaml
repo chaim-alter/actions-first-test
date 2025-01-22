@@ -3,7 +3,7 @@ name: Cond
 on: 
   workflow_dispatch:
     inputs:
-      yes:
+      aaa:
         description: 'Perform incremental build'
         required: true
         default: false
@@ -14,10 +14,10 @@ jobs:
   check:
     runs-on: ubuntu-latest
     outputs:
-      c1: ${{ steps.c1.outputs.c1>0 | input.yes=='false'}}
+      c1: ${{ steps.c1.outputs.c1>0 | input.aaa=='false'}}
     steps: 
       - name: check
-        if: input.yes == 'true'
+        if: input.aaa == 'true'
         id: c1
         run: |
           COUNT=10
