@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Cond
 
 on: 
@@ -25,11 +23,3 @@ jobs:
           COUNT=10
           echo "c1=$COUNT" >> $GITHUB_OUTPUT
   
-  a1:
-    runs-on: ubuntu-latest
-    needs: [check]
-    if: needs.check.outputs.c1=='true'
-    steps:
-      - name: to be
-        run: |
-          echo "aaa"
