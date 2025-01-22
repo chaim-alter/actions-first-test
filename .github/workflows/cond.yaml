@@ -26,7 +26,8 @@ jobs:
   a1:
     runs-on: ubuntu-latest
     needs: check
-    if: needs.check.outputs.c1 || !inputs.aaa
+    # if: needs.check.outputs.c1 || !inputs.aaa
+    if: needs.check.outputs.c1
     steps:
       - name: to be
         run: |
