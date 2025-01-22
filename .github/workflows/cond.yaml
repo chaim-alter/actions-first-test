@@ -20,7 +20,7 @@ jobs:
         if: inputs.aaa
         id: c1
         run: |
-          COUNT=10
+          COUNT=0
           echo "c1=$COUNT" >> $GITHUB_OUTPUT
       
   a1:
