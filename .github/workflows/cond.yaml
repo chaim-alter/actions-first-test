@@ -31,4 +31,5 @@ jobs:
     steps:
       - name: to be
         run: |
+          echo "aaa ${{inputs.aaa}}"
           echo "aaa ${{needs.check.outputs.c1}}"
