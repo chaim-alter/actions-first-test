@@ -3,7 +3,7 @@ name: Cond
 on: 
   workflow_dispatch:
     inputs:
-      aaa:
+      incremental:
         description: 'Perform incremental build'
         required: true
         default: false
@@ -14,22 +14,21 @@ jobs:
   check:
     runs-on: ubuntu-latest
     outputs:
-      c1: ${{ steps.c1.outputs.c1>0 || !inputs.aaa }}
+      run-deployment: ${{ steps.c1.outputs.c1>0 || !inputs.incremental }}
     steps: 
-      - name: check
-        if: inputs.aaa
+      - name: check count of updated docs
+        if: inputs.incremental
         id: c1
         run: |
           COUNT=0
           echo "c1=$COUNT" >> $GITHUB_OUTPUT
       
-  a1:
+  deployment:
     runs-on: ubuntu-latest
     needs: check
-    # if: needs.check.outputs.c1 || !inputs.aaa
-    if: ${{needs.check.outputs.c1=='true'}}
+    if: ${{needs.check.outputs.run-deployment=='true'}}
     steps:
-      - name: to be
+      - name: deploy
         run: |
-          echo "aaa ${{inputs.aaa}}"
-          echo "aaa ${{needs.check.outputs.c1}}"
+          echo "aaa ${{inputs.incremental}}"
+          echo "aaa ${{needs.check.outputs.run-deployment}}"
