@@ -20,7 +20,7 @@ jobs:
         if: inputs.incremental
         id: c1
         run: |
-          COUNT=0
+          COUNT=2
           echo "c1=$COUNT" >> $GITHUB_OUTPUT
       
   deployment:
@@ -30,5 +30,4 @@ jobs:
     steps:
       - name: deploy
         run: |
-          echo "aaa ${{inputs.incremental}}"
-          echo "aaa ${{needs.check.outputs.run-deployment}}"
+          echo "inc--${{ inputs.incremental && ':incremental' || '' }}"
